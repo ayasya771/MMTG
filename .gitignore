@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+.DS_Store
+
+# Generated datasets and training runs. Everything here is reproducible
+# from scripts/; the demo page in docs/ is committed with its data inlined.
+data/
+runs/

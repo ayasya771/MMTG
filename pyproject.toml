@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mmtg"
+version = "1.0.0"
+description = "Multimodal LLM-driven macro regime trade generation via knowledge graph fusion"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Ayasya Batta" }]
+dependencies = [
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+    "networkx>=3.2",
+    "pillow>=10.0",
+    "torch>=2.1",
+]
+
+[project.optional-dependencies]
+data = ["pandas>=2.1"]
+llm = ["transformers>=4.40"]
+web = ["onnx>=1.16", "onnxruntime>=1.18", "onnxscript>=0.1"]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*.py" = ["F401", "E402"]
+"tests/conftest.py" = ["E402"]

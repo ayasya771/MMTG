@@ -1,0 +1,15 @@
+numpy>=1.26
+matplotlib>=3.8
+networkx>=3.2
+pillow>=10.0
+torch>=2.1
+# real data downloads (local runs)
+pandas>=2.1
+# optional LLM extraction engine
+# transformers>=4.40
+# browser demo export (scripts/export_web_model.py)
+# onnx>=1.16
+# onnxruntime>=1.18
+# onnxscript>=0.1
+# tests
+pytest>=8.0
