@@ -7,15 +7,7 @@ from-scratch **Financial-CLIP** encoder into a temporal **Dynamic Knowledge
 Graph**, and lets a **VLA action head** emit long-short global macro portfolio
 tilts as JSON, together with the causal chain the graph used to argue for them.
 
-**Live demo:** `python serve_demo.py` runs it locally in one command, or
-publish `docs/` to GitHub Pages at
-https://YOUR-USERNAME.github.io/Multimodal_Macro_Trade_Generation/ (replace
-with your username once Pages is on). The page is not a static report: the
-four trained models ship as ONNX and run in the browser, so you can feed it
-your own statement, your own chart and port images, and any knowledge-graph
-cutoff date, and watch the tilt change.
-
-Real output from the shipped run, abridged:
+Output from the shipped run, abridged:
 
 ```json
 {
@@ -168,7 +160,7 @@ quality is exactly measurable against ground truth.
 
 Every component consumes the same interfaces either way.
 
-### Real data
+### Data Used
 
 ```bash
 python scripts/download_data.py --start 1990-01
@@ -204,39 +196,7 @@ unchanged.
 
 ---
 
-## Deploying the demo to GitHub Pages
-
-The page is not a static snapshot. `docs/web-assets/` carries the four trained
-models as self-contained ONNX files plus the knowledge graph and tokenizer, and
-`engine.js` reimplements the tokenizer, hawk/dove scorer, temporal graph
-retrieval and the pipeline in JavaScript. Opening the page loads the models
-with onnxruntime-web and runs a parity self-check against Python reference
-outputs stored in `bundle.json`; the header badge reports the result. Editing
-the statement and pressing **Run inference** executes the real text tower,
-graph retrieval and action head in the browser, and the chart thumbnails can be
-re-encoded through the vision tower from their pixels.
-
-```bash
-pip install onnx onnxruntime onnxscript
-python scripts/export_web_model.py --run runs/main   # models + bundle + explorer
-```
-
-1. Push the repository to GitHub.
-2. Settings -> Pages -> Source: **Deploy from a branch**.
-3. Branch **main**, folder **/docs**. Save.
-
-To run it locally, from the project folder:
-
-```bash
-python serve_demo.py
-```
-
-That serves `docs/` on a free port and opens the live page. Opening
-`docs/index.html` directly from disk will not work for the live section,
-because browsers block `fetch()` on `file://` URLs; the page detects this and
-says so, and every static section still renders.
-
-### Driving it yourself
+## Live Demo Testing
 
 The console is not limited to replaying stored months. You can:
 
